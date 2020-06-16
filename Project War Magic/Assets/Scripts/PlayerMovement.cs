@@ -19,11 +19,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown (0))
         {
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
+            RaycastHit hit;
 
-            if (Physics.Raycast (mouseRay, out hitInfo, 100, clickable))
+            if (Physics.Raycast (mouseRay, out hit, 100, clickable))
             {
-                playerAgent.SetDestination(hitInfo.point);
+                if (hit.collider.gameObject.layer == 8 )
+                {
+                    playerAgent.SetDestination(hit.point);
+                }
             }
         }
     }
