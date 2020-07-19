@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
 
     public float scrollSpeed = 20f;
 
+    public GameObject player;
+
     void Start()
     {
         
@@ -16,6 +18,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+
         Vector3 pos = transform.position;
 
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
@@ -36,7 +39,7 @@ public class CameraController : MonoBehaviour
         }
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        pos.y += scroll + scrollSpeed * Time.deltaTime;
+        pos.y -= scroll * scrollSpeed * 100.0f * Time.deltaTime;
 
         transform.position = pos;
     }
